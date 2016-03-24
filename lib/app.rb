@@ -62,9 +62,11 @@ puts ''
 # For each brand in the data set:
 products_hash["items"].each do |brand|
   # Print the name of the brand
-  puts "#{brand["brand"].upcase}"
+  brand_name = brand["brand"]
+  puts "#{brand_name}"
   # Count and print the number of the brand's toys we stock
-  
+  stock = brand["stock"]
+  puts "Stock: #{stock}"
   # Calculate and print the average price of the brand's toys
   # Calculate and print the total revenue of all the brand's toy sales combined
 end
