@@ -4,6 +4,8 @@ file = File.read(path)
 products_hash = JSON.parse(file)
 
 # Print today's date
+require 'date'
+puts "Today's Date: " + Date.today.strftime("%m/%d/%Y")
 
 puts "                     _            _       "
 puts "                    | |          | |      "
@@ -37,7 +39,8 @@ products_hash["items"].each do |toy|
   # Calculate and print the average discount (% or $) based off the average sales price
   retail_value = retail * amt_purchases
   average_price = (retail_value - revenue)/amt_purchases
-  puts "Average Discount: $#{average_price.round(2)}"
+  average_price = average_price
+  puts "Average Discount: $#{"%.2f" % average_price}"
 end
 
 
