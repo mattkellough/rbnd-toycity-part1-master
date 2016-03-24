@@ -5,6 +5,7 @@ products_hash = JSON.parse(file)
 
 # Print today's date
 require 'date'
+puts ''
 puts "Today's Date: " + Date.today.strftime("%m/%d/%Y")
 
 puts "                     _            _       "
@@ -16,11 +17,13 @@ puts "| .__/|_|  \\___/ \\__,_|\\__,_|\\___|\\__|___/"
 puts "| |                                       "
 puts "|_|                                       "
 
+puts ''
 
 # For each product in the data set:
 products_hash["items"].each do |toy|
   # Print the name of the toy
   puts "#{toy["title"]}"
+  puts '****************************************'
   # Print the retail price of the toy
   retail = toy["full-price"].to_f
   puts "Retail Price: $#{retail}"
@@ -41,6 +44,8 @@ products_hash["items"].each do |toy|
   average_price = (retail_value - revenue)/amt_purchases
   average_price = average_price
   puts "Average Discount: $#{"%.2f" % average_price}"
+  puts '****************************************'
+  puts ''
 end
 
 
@@ -52,8 +57,14 @@ puts "| |_) | | | (_| | | | | (_| \\__ \\"
 puts "|_.__/|_|  \\__,_|_| |_|\\__,_|___/"
 puts
 
+puts ''
+
 # For each brand in the data set:
-# Print the name of the brand
-# Count and print the number of the brand's toys we stock
-# Calculate and print the average price of the brand's toys
-# Calculate and print the total revenue of all the brand's toy sales combined
+products_hash["items"].each do |brand|
+  # Print the name of the brand
+  puts "#{brand["brand"].upcase}"
+  # Count and print the number of the brand's toys we stock
+  
+  # Calculate and print the average price of the brand's toys
+  # Calculate and print the total revenue of all the brand's toy sales combined
+end
