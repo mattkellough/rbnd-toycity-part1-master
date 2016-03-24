@@ -20,7 +20,7 @@ products_hash["items"].each do |toy|
   # Print the name of the toy
   puts "#{toy["title"]}"
   # Print the retail price of the toy
-  retail = toy["full-price"]
+  retail = toy["full-price"].to_f
   puts "Retail Price: $#{retail}"
   # Calculate and print the total number of purchases
   amt_purchases = toy["purchases"].length
@@ -35,7 +35,9 @@ products_hash["items"].each do |toy|
   avg_price = revenue / amt_purchases
   puts "Average Price: $#{avg_price}"
   # Calculate and print the average discount (% or $) based off the average sales price
-
+  retail_value = retail * amt_purchases
+  average_price = (retail_value - revenue)/amt_purchases
+  puts "Average Discount: $#{average_price.round(2)}"
 end
 
 
