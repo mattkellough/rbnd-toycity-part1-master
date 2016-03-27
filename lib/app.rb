@@ -18,9 +18,12 @@ puts "| |                                       "
 puts "|_|                                       "
 
 puts ''
+brands = []
 
 # For each product in the data set:
 products_hash["items"].each do |toy|
+  brands.push(toy["brand"]) unless brands.include? toy["brand"]
+
   # Print the name of the toy
   puts "#{toy["title"]}"
   puts '****************************************'
@@ -61,23 +64,33 @@ puts
 puts ''
 
 # For each brand in the data set:
-products_hash["items"].each do |brand|
+# I can't figure out how to combine the two brands
+brands.each do |brand|
   # Print the name of the brand
-  brand_name = brand["brand"]
-  puts "#{brand_name.upcase}"
+  # brand_name = brand["brand"]
+  puts "#{brand.upcase}"
   puts '****************************************'
+
+
+  these_products = products_hash["items"].select { |item| item["brand"] == brand }
+  total_toys = these_products.length
+
+
   # Count and print the number of the brand's toys we stock
-  stock = brand["stock"]
-  puts "Number of Products: #{stock}"
-  # Calculate and print the average price of the brand's toys
-  
-  puts "Average Product Price: $"
-  # Calculate and print the total revenue of all the brand's toy sales combined
-  revenue = 0.0
-  brand["purchases"].each do |purchases|
-    revenue = revenue + purchases["price"]
+  brand_stock = 0
+  brand_price = 0.0
+  brand_sales = 0
+  these_products.each do |brand|
+    brand_stock = brand_stock + brand["stock"]
+    brand_price = brand_price + brand["full-price"].to_f
+    brand_sales =  brand_sales + brand["purchases"].length
   end
-  brand_sales = revenue
+
+  puts "Number of Products: #{brand_stock}"
+  # Calculate and print the average price of the brand's toys
+  avg_brand_price = brand_price / total_toys
+  puts "Average Product Price: $#{avg_brand_price.round(2)}"
+  # Calculate and print the total revenue of all the brand's toy sales combined
   puts "Total sales: $#{brand_sales}"
   puts ''
 end
